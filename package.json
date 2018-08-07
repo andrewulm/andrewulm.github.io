@@ -1,0 +1,22 @@
+{
+  "name": "andrewulm-ku",
+  "version": "1.0.0",
+  "description": "Library of all KUCodingBootcamp projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewulm/andrewulm.github.io.git"
+  },
+  "author": "Andrew Ulm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewulm/andrewulm.github.io/issues"
+  },
+  "homepage": "https://github.com/andrewulm/andrewulm.github.io",
+  "dependencies": {
+    "node-sass": "^4.9.2"
+  }
+}

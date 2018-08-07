@@ -1,0 +1,87 @@
+// Default Colors //
+
+$primary-text: #BDBDBD;
+$primary-icons: #DCEDC8;
+$primary-background: #37474f;
+$primary-color: #8BC34A;
+$primary-color-dark: #689F38;
+$secondary-text: #757575;
+$accent-color: #607D8B;
+$divider-color: #757575;
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  background: $primary-background;
+  color: $primary-text;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#site-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .container {
+    flex-basis: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-left: 1px solid $divider-color;
+    border-right: 1px solid $divider-color;
+    background: #0000001A;
+
+    .project-card {
+      border: 1px solid $divider-color;
+      border-left: 5px solid $primary-color;
+      border-radius: 6px;
+      padding: 20px;
+      margin: 20px 0;
+
+      h3 {
+        margin-top: 0;
+        color: $primary-color-dark;
+      }
+
+      &:hover {
+        background: #00000033;
+
+        h3 {
+          color: $accent-color;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 4.0rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      color: $primary-color;
+      letter-spacing: 4px;
+    }
+
+    h2 {
+      font-size: 2.0rem;
+      font-weight: 200;
+      color: #fff;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 200;
+      color: $accent-color;
+      margin: 10px 0;
+    }
+
+    hr {
+      margin: 30px 0;
+      border-color: $divider-color
+    }
+  }
+}
+
