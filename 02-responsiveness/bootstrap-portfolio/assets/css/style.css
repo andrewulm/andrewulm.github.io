@@ -25,24 +25,26 @@ body {
 /* // Header // */
 .navbar {
     padding: 0 20px;
-    background: #eee;
+    background: #fff;
     border-bottom: 1px solid #ccc;
     margin-bottom: 40px;
 }
 
 .navbar-brand {
     background: #4aaaa5;
-    color: #fff;
     padding: 20px;
 }
 
-.navbar-toggler-icon {
-    color: #000;
+.navbar-brand h1 {
+    font-size: 2.25rem;
+    font-weight: 500;
+    color: #fff;
 }
 
 /* // Main Content // */
 main h1 {
     color: #4aaaa5;
+    font-size: 2.0rem;
 }
 
 main .about-img {
@@ -58,6 +60,101 @@ main #content {
     border-left: 4px solid #4aaaa5;
 }
 
+/* // Portfolio // */
+main #content #portfolio .portfolio-card {
+    padding: 20px;
+}
+
+main #content #portfolio .portfolio-card div {
+    position: relative;
+}
+
+main #content #portfolio .portfolio-card div:hover {
+    box-shadow: 0 0 10px 2px #777;
+}
+
+main #content #portfolio .portfolio-card div div:hover {
+    box-shadow: none;
+}
+
+main #content #portfolio .portfolio-card div div {
+    padding: 10px;
+    background: #4aaaa5;
+    color: #fff;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+}
+
+main #content #portfolio .portfolio-card div div h3{
+    font-size: 1.25rem;
+    margin: 0 auto;
+}
+
+.portfolio-hangman {
+    background: url("../images/portfolio-hangman.jpg") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+.portfolio-rpg {
+    background: url("../images/portfolio-rpg.jpg") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+.portfolio-trivia {
+    background: url("../images/portfolio-trivia.jpg") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+.portfolio-kuinfo {
+    background: url("../images/portfolio-kuinfo.png") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+.portfolio-rps {
+    background: url("../images/portfolio-rockpaperscissors.png") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+.portfolio-tbd {
+    background: url("../images/portfolio-tbd.jpg") center center;
+    background-size: 50%;
+    height: 250px;
+}
+
+/* // Contact // */
+form {
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+form .submit {
+    background: #4aaaa5;
+    color: white;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #777777;
+}
+
 /* // Footer // */
 .footer {
     position: absolute;
@@ -66,6 +163,14 @@ main #content {
     height: 60px; /* Set the fixed height of the footer here */
     line-height: 60px; /* Vertically center the text there */
     background-color: #666;
+}
+
+.footer-border-top {
+    border-top: 4px #4aaaa5 solid;
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 footer .container {
