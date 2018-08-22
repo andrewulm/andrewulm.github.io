@@ -1,41 +1,31 @@
+@font-face {
+    font-family: 'Soloist';
+    src: url("../fonts/soloist_base.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Soloist-3d';
+    src: url("../fonts/soloist_3d.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Soloist-Outline';
+    src: url("../fonts/soloist_outline.ttf") format('truetype');
+}
+
+
 body {
-    background-color: #eee;
-    padding-top: 20px;
-    font-family: Courier New, Courier, monospace;
-    color: white;
-    text-shadow: 0 0 2px black, -1px -1px 2px black, 1px 0 2px black, 1px 1px 2px black;
-    background: url('../images/bgimage.jpg') no-repeat;
-    background-size: cover;
-}
-.container {
-    text-align: center;
-
-}
-h1,h2,h3,
-h4,h5,h6 {
-    padding: 5px;
-    background-color: rgba(101,155,242,.2);
-}
-#title-image, #gameover-image, #youwin-image{
-    display: block;
-    margin: 0 auto;
+    background: url(../images/star-war-background.png) center center;
 }
 
-#currentWord {
-    letter-spacing: 10px;
+h1 {
+    font-family: 'Soloist', sans-serif;
 }
 
-#pressKeyTryAgain,
-#gameover-image,
-#youwin-image { display: none;}
-.gameplay-column {
-    padding-top: 20px;
-    border: 3px dashed #fff;
-    text-align: center;
-    margin-top: 20px;
-    min-height: 500px;
-    background-color: rgba(255, 255, 255, .3);
+h2 {
+    font-family: 'Soloist-3d', sans-serif;
 }
 
-
-The Game Logic
+h3 {
+    font-family: 'Soloist-Outline', sans-serif;
+}
