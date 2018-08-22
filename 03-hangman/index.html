@@ -10,8 +10,8 @@
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
 
     <script src="assets/js/game.js" type="text/javascript"></script>
 
@@ -19,12 +19,40 @@
 <body>
 
 <main class="container">
+    <header class="row">
+        <div class="col">
+            <h1>Star Wars</h1>
+            <h2>H A N G M A N</h2>
+            <div id="_messagePrompt">
+                <p>Press Any Key to begin</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="row">
+        <div class="col">
+            <div class="letter-row" id="_guessWord">
+            </div>
+        </div>
+    </section>
+
+    <footer class="row">
+        <div class="col">
+            <hr>
+            <h3>Guesses Remaining: <span id="_guessesRemaining">#</span></h3>
+            <h3>Guessed Letters: <span id="_guessedLetters">#</span></h3>
+            <h3>Total Wins: <span id="_totalWins">#</span></h3>
+        </div>
+    </footer>
 
 </main>
 
 <script>
-    gameReset();
-    updateDisplay();
+
+    startGame()
+
+    // gameReset();
+    // updateDisplay();
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

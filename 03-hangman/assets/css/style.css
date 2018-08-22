@@ -16,16 +16,90 @@
 
 body {
     background: url(../images/star-war-background.png) center center;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
-h1 {
+h1, h2, h3 {
+    color: #FFB80A;
     font-family: 'Soloist', sans-serif;
 }
 
-h2 {
-    font-family: 'Soloist-3d', sans-serif;
+main {
+    background: #33333366;
+    height: 100vh;
+    border-left: 4px #333333 solid;
+    border-right: 4px #333333 solid;
 }
 
-h3 {
-    font-family: 'Soloist-Outline', sans-serif;
+header {
+    text-align: center;
+}
+
+header div h1 {
+    margin-top: 20px;
+    font-size: 8rem;
+}
+
+header div h2 {
+    font-family: 'Soloist-3d';
+    font-size: 4rem;
+    color: #b70000;
+    margin: 0 auto 25px;
+}
+
+header div div {
+    background: #00c0a9;
+    padding: 10px;
+    border-radius: 6px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+header div div p {
+    color: #fff;
+    font-size: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+/* // Game Section // */
+
+section {
+    margin: 20px;
+}
+
+section div .letter-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+section div .hash {
+    border-bottom: 5px #FFB80A solid;
+    background: #ffffff33;
+    flex-basis: 10%;
+    margin: 1%;
+    display: inline-block;
+}
+
+section div .hash h3 {
+    font-size: 6rem;
+    color: #fff;
+    padding: 15px;
+}
+
+/* // Footer // */
+footer div hr {
+    background: #333;
+    margin-bottom: 35px;
+}
+
+footer div h3 {
+    color: #00c0a9;
+}
+
+footer div h3 span {
+    color: #fff;
 }

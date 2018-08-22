@@ -1,117 +1,141 @@
-// Hangman Game
+// Star Wars Hangman - Game Logic
 // Author: Andrew Ulm
+// Description:
 
-// Array of words used for the game
-var wordList = [
-    'dog',
-    'cat',
-    'bird'
-    ];
+// Global Variables
+const maxGuesses = 10;              // Set the maximum number of guesses
 
-// Setting global level variables
-const guessesMax = 10;          // SET this number to raise or lower the difficulty
-var guessesRemaining = 0;       // Guesses remaining before user loses
+var remainingGuesses = 0;           // __init: Set remaining guesses to 0
+var characterIndex;                 // To be used in picking random character
+var guessWord = [];                 // Array to store the random character
+var guessLetters = [];              // Array to store the users guesses
+var gameStarted = false;            // __init: Set game start to false
+var gameFinished = false;           // __init: Set game finished to false
+var totalWins = 0;                  // Track total number of wins
 
-var guessingLetters = [];       // STORES guesses made by the user
-var guessingWord = [];          // Word to match to the current word
+// Set the characters to guess from
+var starWarsCharacters = [
+    'Luke',
+    'Darth',
+    'Yoda',
+    'Obiwan'
+];
 
-var wordIndex;                  // Index of the current word
-var gameStarted = false;        // Sentinel value for starting game
-var gameFinished = false;       // Sentinel value for ending game
-var totalWins = 0;              // Track the total number of wins
+// Start and Restart the game
+function startGame () {
 
-// Reset all values of the game before game start
-function gameReset () {
-    guessesRemaining = guessesMax;          // Reset the guesses remaining to equal guesses allowed
-    gameStarted = false;                    // Reset game start to false
+    remainingGuesses = maxGuesses;          // Set remaining guesses to total of Maximum guesses
+    gameStarted = false;                    // Set to false for game reset
 
-    wordIndex = Math.floor(Math.random() * (wordList.length));          // Set an index value to pull word from list
+    characterIndex = Math.floor(Math.random() * (starWarsCharacters.length));       // Choose random character from list
 
-    for ( var i = 0; i < wordList[wordIndex].length; i++ ) {            // Generate hash marks for word to guess
-        guessingWord.push('_');
+    // Loop through length of selected Character and output the appropriate number of boxes for guessing
+    for ( i = 0; i < starWarsCharacters[characterIndex].length; i++) {
+
+        guessWord.push(starWarsCharacters[characterIndex][i]);      // Add each letter to the guessWord array
+
+        var letterRow = document.getElementById('_guessWord');      // Find appropriate container in document
+        var container = document.createElement('div');              // Create a new <div> inside that row
+        var letter = document.createElement('h3');                  // Create a new <h3> inside that <div>
+        container.className = 'hash';                               // Assign class="hash" to <div>
+        letter.id = '_' + i;                                        // Assign id="_i" to <h3>
+
+
+        letterRow.append(container);                                // Add the <div> on the page
+        container.append(letter);                                   // Add the <h3> inside the <div> on the page
+
     }
 
-    document.getElementById('pressKeyTryAgain').style.cssText= "display:none";  // Hide until needed
-    document.getElementById('gameover-image').style.cssText= "display:none";    // Hide until needed
-    document.getElementById('youwin-image').style.cssText= "display:none";      // Hide until needed
+    updateScreen();                                                 // Update values on screen
 
+    // TEST: What word was picked?
+    console.log(guessWord);
 
-    updateDisplay();
 }
 
-function updateDisplay() {
+// Update/Refresh all on screen dynamic values
+function updateScreen () {
 
-    document.getElementById('totalWins').innerText = totalWins;         // Display total wins
-    document.getElementById('currentWord').innerText = '';              // ----------------------------------
+    document.getElementById('_totalWins').innerText = totalWins;    // Update totalWins on the page
 
-    for ( var i = 0; i < guessingWord.length; i++ ) {
-        document.getElementById('currentWord').innerText += guessingWord[i]         // Display hash marks
+    for ( i = 0; i < guessWord.length; i++ ) {
+        document.getElementById('_' + i).innerText = '';            // Set blank space inside of the <h3>
+
     }
 
-    document.getElementById('remainingGuesses').innerText = guessesRemaining;       // Display guesses remaining
-    document.getElementById('guessedLetters').innerText = guessingLetters;          // Display letters guessed
+    document.getElementById('_guessedLetters').innerText = guessLetters;
+    document.getElementById('_guessesRemaining').innerText = remainingGuesses;
 
-    if ( guessesRemaining <= 0 ) {
-        document.getElementById('gameover-image').style.cssText = "display: block";
-        document.getElementById('pressKeyTryAgain').style.cssText = "display: block";
-        gameFinished = true;
-    }
 }
 
-document.onkeydown = function(event) {
-    if ( gameFinished ) {              // Check if game has finished, if so reset game
-        gameReset();
-        gameFinished = false;
-    } else {            // Verify key a-z was pressed, then send to makeGuess
-        if ( event.keyCode >= 65 && event.keyCode <= 90) {
-            makeGuess(event.key.toLowerCase());
-        }
-    }
+// Grab the user keystroke
+document.onkeydown = function (event) {
+
+  if ( gameFinished === true ) {                                    // Check to see if the game has been won
+      startGame();                                                  // Start a new game
+      gameFinished = false;                                         // Reset game status
+  } else {
+      if ( event.keyCode >= 65 && event.keyCode <= 99 ) {           // Check to verify keystroke is between a-z
+          makeGuess(event.key.toLowerCase());                       // Send lowercase letter to makeGuess() function
+      }
+  }
+
 };
 
+// Make guess based on user Keystroke
 function makeGuess (letter) {
-    if ( guessesRemaining > 0 ) {
-        if ( !gameStarted ) {           // Start the game
-            gameStarted = true;
+
+    if ( remainingGuesses > 0) {                                    // Check to verify there are guesses to be made
+
+        if ( !gameStarted ) {                                       // Check to verify game has been started
+            gameStarted = true;                                     // Start the game
         }
 
-        if ( guessingLetters.indexOf(letter) === -1 ) {         // Check to verify letter has not been used
-            guessingLetters.push(letter);
-            evaluateGuess(letter);
+        if ( guessLetters.indexOf(letter) === -1 ) {                // Check to verify letter hasn't already been guessed
+            guessLetters.push(letter);                              // Add letter to guessLetters array
+            checkGuess(letter);                                     // Send letter to check to checkGuess() function
         }
     }
 
-    updateDisplay();
-    checkWin();
+    updateScreen();
+
 }
 
-function evaluateGuess (letter) {
-    var positions = [];
+// Check the guess vs the letters in Character to guess array
+function checkGuess (letter) {
 
-    for ( var i = 0; i < wordList[wordIndex].length; i++ ) {
-        if ( wordList[wordIndex][i] === letter) {
-            positions.push(i);
+    var letters = [];                                               // Empty array for storage of checked letters
+
+    for ( i = 0; i < starWarsCharacters[characterIndex].length; i++) {
+        if ( starWarsCharacters[characterIndex][i].toLowerCase() === letter ) {     // If the guessed letter matches
+            letters.push(letter);                                                   // Add letter to empty array
         }
     }
 
-    if ( positions.length <= 0) {
-        guessesRemaining--;
-    } else {
-        for ( var i = 0; i < positions.length; i++) {
-            guessingWord[positions[i]] = letter;
+    console.log(letters);
+
+    if ( letters.length <= 0 ) {                                    // If the letter was not found
+        remainingGuesses--;                                         // Lower the amount of guesses remaining
+    } else
+        for ( i = 0; i < letters.length; i++ ) {{
+            guessWord[letters[i]] = letter;
         }
     }
+
+    console.log(letters);
+    console.log(guessWord);
 }
 
-function checkWin () {
-    if ( guessingWord.indexOf('_') === -1 ) {
-        document.getElementById('youwin-image').style.cssText = "display: block";
-        document.getElementById('pressKeyTryAgain').style.cssText = "display: block";
-        totalWins++;
-        gameFinished = true;
-    }
 
-}
+
+
+
+
+
+
+
+
+
 
 
 
