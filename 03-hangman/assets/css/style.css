@@ -29,6 +29,7 @@ main {
     height: 100vh;
     border-left: 4px #333333 solid;
     border-right: 4px #333333 solid;
+    z-index: 9999;
 }
 
 header {
