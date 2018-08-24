@@ -29,7 +29,7 @@ var starWarsCharacters = [
     'AnakinSkywalker',
     'CountDooku',
     'QuiGonJinn',
-    'JabbaTheHut',
+    'JabbaTheHutt',
     'PadmeAmidala'
 ];
 
@@ -45,6 +45,8 @@ function startGame () {
 
     guessLetters = [];
     guessWord = [];
+
+    console.log(starWarsCharacters[characterIndex]);
 
     // Loop through length of selected Character and output the appropriate number of boxes for guessing
     for ( i = 0; i < starWarsCharacters[characterIndex].length; i++) {
