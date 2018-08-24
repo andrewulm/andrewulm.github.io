@@ -15,10 +15,22 @@ var totalWins = 0;                  // Track total number of wins
 
 // Set the characters to guess from
 var starWarsCharacters = [
-    'Luke',
-    'Darth',
+    'LukeSkywalker',
+    'DarthVader',
     'Yoda',
-    'Obiwan'
+    'ObiwanKenobi',
+    'HanSolo',
+    'Chewbacca',
+    'Leia',
+    'BobaFett',
+    'JarJarBinks',
+    'KyloRen',
+    'DarthMaul',
+    'AnakinSkywalker',
+    'CountDooku',
+    'QuiGonJinn',
+    'JabbaTheHut',
+    'PadmeAmidala'
 ];
 
 // Start and Restart the game
