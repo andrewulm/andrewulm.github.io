@@ -24,22 +24,26 @@ var starWarsCharacters = [
 // Start and Restart the game
 function startGame () {
 
+    document.getElementById('_guessWord').innerHTML = '';
+
     remainingGuesses = maxGuesses;          // Set remaining guesses to total of Maximum guesses
     gameStarted = false;                    // Set to false for game reset
 
     characterIndex = Math.floor(Math.random() * (starWarsCharacters.length));       // Choose random character from list
 
+    guessLetters = [];
+    guessWord = [];
+
     // Loop through length of selected Character and output the appropriate number of boxes for guessing
     for ( i = 0; i < starWarsCharacters[characterIndex].length; i++) {
 
-        guessWord.push(starWarsCharacters[characterIndex][i]);      // Add each letter to the guessWord array
+        guessWord.push('');      // Add each letter to the guessWord array
 
         var letterRow = document.getElementById('_guessWord');      // Find appropriate container in document
         var container = document.createElement('div');              // Create a new <div> inside that row
         var letter = document.createElement('h3');                  // Create a new <h3> inside that <div>
         container.className = 'hash';                               // Assign class="hash" to <div>
         letter.id = '_' + i;                                        // Assign id="_i" to <h3>
-
 
         letterRow.append(container);                                // Add the <div> on the page
         container.append(letter);                                   // Add the <h3> inside the <div> on the page
@@ -63,24 +67,20 @@ function updateScreen () {
 
     }
 
+    for ( i = 0; i < guessWord.length; i++ ) {
+        document.getElementById('_' + i).innerText += guessWord[i];
+    }
+
+    document.getElementById('_messagePrompt').innerHTML = '';
     document.getElementById('_guessedLetters').innerText = guessLetters;
     document.getElementById('_guessesRemaining').innerText = remainingGuesses;
 
+    if ( remainingGuesses <= 0 ) {
+        document.getElementById('_messagePrompt').innerText = 'You lose';
+        gameFinished = true;
+    }
+
 }
-
-// Grab the user keystroke
-document.onkeydown = function (event) {
-
-  if ( gameFinished === true ) {                                    // Check to see if the game has been won
-      startGame();                                                  // Start a new game
-      gameFinished = false;                                         // Reset game status
-  } else {
-      if ( event.keyCode >= 65 && event.keyCode <= 99 ) {           // Check to verify keystroke is between a-z
-          makeGuess(event.key.toLowerCase());                       // Send lowercase letter to makeGuess() function
-      }
-  }
-
-};
 
 // Make guess based on user Keystroke
 function makeGuess (letter) {
@@ -98,35 +98,55 @@ function makeGuess (letter) {
     }
 
     updateScreen();
+    victory();
 
 }
 
 // Check the guess vs the letters in Character to guess array
 function checkGuess (letter) {
 
-    var letters = [];                                               // Empty array for storage of checked letters
+    var letters = [];                   // Empty array for storage of checked letters
 
     for ( i = 0; i < starWarsCharacters[characterIndex].length; i++) {
         if ( starWarsCharacters[characterIndex][i].toLowerCase() === letter ) {     // If the guessed letter matches
-            letters.push(letter);                                                   // Add letter to empty array
+            letters.push(i);                                                   // Add letter to empty array
         }
     }
 
-    console.log(letters);
-
     if ( letters.length <= 0 ) {                                    // If the letter was not found
-        remainingGuesses--;                                         // Lower the amount of guesses remaining
+        remainingGuesses--;                                       // Lower the amount of guesses remaining
     } else
         for ( i = 0; i < letters.length; i++ ) {{
             guessWord[letters[i]] = letter;
         }
     }
 
-    console.log(letters);
-    console.log(guessWord);
 }
 
+function victory () {
 
+    if ( guessWord.indexOf('') === -1 ) {
+        document.getElementById('_messagePrompt').innerHTML =
+            '<p><strong>You Win!</strong> Press any key to play again</p>';
+        totalWins++;
+        gameFinished = true;
+    }
+
+}
+
+// Grab the user keystroke
+document.onkeydown = function (event) {
+
+    if ( gameFinished === true ) {                                    // Check to see if the game has been won
+        startGame();                                                  // Start a new game
+        gameFinished = false;                                         // Reset game status
+    } else {
+        if ( event.keyCode >= 65 && event.keyCode <= 99 ) {           // Check to verify keystroke is between a-z
+            makeGuess(event.key.toLowerCase());                       // Send lowercase letter to makeGuess() function
+        }
+    }
+
+};
 
 
 
