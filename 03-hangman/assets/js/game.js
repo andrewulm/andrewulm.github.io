@@ -36,6 +36,9 @@ var starWarsCharacters = [
 // Start and Restart the game
 function startGame () {
 
+    document.getElementById('_messagePrompt').innerHTML =
+        '<p>Press any key to guess</p>';
+
     document.getElementById('_guessWord').innerHTML = '';
 
     remainingGuesses = maxGuesses;          // Set remaining guesses to total of Maximum guesses
@@ -85,12 +88,12 @@ function updateScreen () {
         document.getElementById('_' + i).innerText += guessWord[i];
     }
 
-    document.getElementById('_messagePrompt').innerHTML = '';
     document.getElementById('_guessedLetters').innerText = guessLetters;
     document.getElementById('_guessesRemaining').innerText = remainingGuesses;
 
     if ( remainingGuesses <= 0 ) {
-        document.getElementById('_messagePrompt').innerText = 'You lose';
+        document.getElementById('_messagePrompt').innerHTML =
+            '<p><strong>You lose.</strong> Press a key to try again.</p>';
         gameFinished = true;
     }
 
