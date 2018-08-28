@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'Soloist';
+    src: url("../fonts/soloist_base.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Soloist-3d';
+    src: url("../fonts/soloist_3d.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Soloist-Outline';
+    src: url("../fonts/soloist_outline.ttf") format('truetype');
+}
+
+
+body {
+    background: url(../images/star-war-background.png) center center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+h1, h2, h3 {
+    color: #FFB80A;
+    font-family: 'Soloist', sans-serif;
+}
+
+main {
+    height: 100vh;
+    z-index: 9999;
+}
+
+header {
+    text-align: center;
+}
+
+header div h1 {
+    margin-top: 20px;
+    font-size: 8rem;
+}
+
+header div h2 {
+    font-family: 'Soloist-3d';
+    font-size: 4rem;
+    color: #b70000;
+    margin: 0 auto 25px;
+}
+
+/* // Game Section // */
+
+.character-card {
+    margin: 1%;
+    border-radius: 6px;
+    min-height: 350px;
+    position: relative;
+}
+
+.character-card .character-name {
+    background-color: #999999;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    height: 30px;
+    width: 100%;
+}
+
+.character-card .character-stats {
+    background-color: #888888;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    border-radius: 0 0 6px 6px;
+}
+
+.battle-stats {
+    background-color: #00c0a9;
+    margin: 1%;
+    border-radius: 6px;
+    min-height: 100px;
+    text-align: center;
+}
+
+
+/* // Footer // */
