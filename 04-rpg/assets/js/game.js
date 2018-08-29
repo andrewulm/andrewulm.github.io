@@ -4,7 +4,11 @@
 
 // Global Variables
 
+var firstChampion = [];
+var secondChampion = [];
+
 var starWars = {
+
     characters: {
         name: [
             'Luke Skywalker',
@@ -44,23 +48,61 @@ var starWars = {
 
     selectChampion : function(selectedCharacter) {
 
-        console.log(selectedCharacter);
+        var character = ('.character-card[name="' + selectedCharacter + '"]');
+        var battleArena = ('#_battleArena');
 
         switch(selectedCharacter) {
             case 'Luke Skywalker':
-                console.log('You Selected: Luke');
+                console.log(character);
+
+                $(battleArena).append( starWars.characters.name[0] );
+
+                if ( firstChampion.length == 0 ) {
+                    firstChampion.push(
+                        starWars.characters.health[0], starWars.characters.attack[0]
+                    );
+                } else {
+                    secondChampion.push(
+                        starWars.characters.health[0], starWars.characters.attack[0]
+                    )
+                }
+
+                console.log(firstChampion);
+                console.log(secondChampion);
+
                 break;
             case 'Master Yoda':
-                console.log('You Selected: Yoda');
+                console.log(character);
+
+                $(battleArena).append( starWars.characters.name[1] );
+
+                if ( firstChampion.length == 0) {
+                    firstChampion.push(
+                        starWars.characters.health[1], starWars.characters.attack[1]
+                    );
+                } else {
+                    secondChampion.push(
+                        starWars.characters.health[1], starWars.characters.attack[1]
+                    )
+                }
+
+                console.log(firstChampion);
+                console.log(secondChampion);
+
                 break;
             case 'Darth Vader':
-                console.log('You Selected: Vader');
+                console.log(character);
+
+
+
                 break;
             case 'Kylo Ren':
-                console.log('You Selected: Kylo');
+                console.log(character);
+
+
+
                 break;
         }
-
     }
 };
 
@@ -68,15 +110,30 @@ $(document).ready(function() {
 
     starWars.setCharacters();
 
-
     $('.character-card').on('click', function() {
 
-        var characterName = $('.character-card').attr('name');
+        var characterName = $(this).attr('name');
 
-        console.log(characterName);
+        starWars.selectChampion(characterName);
 
+    });
 
-    })
+    $('#_attackButton').on('click', function() {
+
+        // First champion attacks second champion
+        secondChampion[0] = secondChampion[0] - firstChampion[1];
+
+        // Second champion attacks first champion
+        firstChampion[0] = firstChampion[0] - secondChampion[1];
+
+        // Increment first champion attack damage
+        firstChampion[1] = (firstChampion[1] + 10);
+
+        console.log(firstChampion);
+        console.log(secondChampion);
+
+    });
+
 
 });
 
