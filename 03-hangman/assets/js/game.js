@@ -13,7 +13,7 @@ var gameStarted = false;            // __init: Set game start to false
 var gameFinished = false;           // __init: Set game finished to false
 var totalWins = 0;                  // Track total number of wins
 
-// Set the characters to guess from
+// Set the starWars to guess from
 var starWarsCharacters = [
     'LukeSkywalker',
     'DarthVader',

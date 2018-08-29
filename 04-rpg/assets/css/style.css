@@ -54,6 +54,10 @@ header div h2 {
     position: relative;
 }
 
+.character-card:hover {
+    cursor: pointer;
+}
+
 .character-card .character-name {
     background-color: #999999;
     position: absolute;
