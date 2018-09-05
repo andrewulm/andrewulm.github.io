@@ -50,7 +50,7 @@ header div h2 {
 .character-card {
     margin: 1%;
     border-radius: 6px;
-    min-height: 350px;
+    min-height: 400px;
     position: relative;
 }
 
@@ -61,16 +61,26 @@ header div h2 {
 .character-card .character-name {
     background-color: #999999;
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     left: 0;
     height: 30px;
     width: 100%;
 }
 
-.character-card .character-stats {
+.character-card .character-health {
     background-color: #888888;
     position: absolute;
-    bottom: 0;
+    bottom: 50px;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    border-radius: 0;
+}
+
+.character-card .character-attack {
+    background-color: #888888;
+    position: absolute;
+    bottom: 0px;
     left: 0;
     height: 50px;
     width: 100%;

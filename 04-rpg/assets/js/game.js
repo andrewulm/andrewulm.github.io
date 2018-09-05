@@ -4,138 +4,113 @@
 
 // Global Variables
 
-var firstChampion = [];
-var secondChampion = [];
+var player = [];
+var enemy = [];
 
 var starWars = {
-
-    characters: {
-        name: [
-            'Luke Skywalker',
-            'Master Yoda',
-            'Darth Vader',
-            'Kylo Ren'],
-        health: [100, 150, 200, 180],
-        attack: [20, 40, 60, 80],
-        background: [
-            'assets/images/char-luke.png',
-            'assets/images/char-yoda.png',
-            'assets/images/char-vader.png',
-            'assets/images/char-kylo.png'
-        ],
-    },
+    characters: [
+        {
+            name: 'Luke Skywalker',
+            health: 100,
+            attack: 20,
+            background: 'assets/images/char-luke.png',
+            selected: false
+        },
+        {
+            name: 'Master Yoda',
+            health: 180,
+            attack: 40,
+            background: 'assets/images/char-yoda.png',
+            selected: false
+        },
+        {
+            name: 'Darth Vader',
+            health: 200,
+            attack: 60,
+            background: 'assets/images/char-vader.png',
+            selected: false
+        },
+        {
+            name: 'Kylo Ren',
+            health: 180,
+            attack: 80,
+            background: 'assets/images/char-kylo.png',
+            selected: false
+        },
+    ],
 
     // Create Character cards based on number of starWars in the list
-    setCharacters : function() {
+    outputCharacters : function() {
 
         var setCharacters = $('#_characterSelect');
 
-        for (i = 0; i < starWars.characters.name.length; i++ ) {
+        for ( index = 0; index < this.characters.length; index++ ) {
 
             $(setCharacters).append(
-                '<div class="col character-card" name="' + starWars.characters.name[i] + '">' +
+                '<div class="col character-card" data-id="' + index + '">' +
                     '<div class="character-name">' +
-                    starWars.characters.name[i] +
+                    this.characters[index].name +
                     '</div>' +
-                    '<div class="character-stats">' +
-                    starWars.characters.health[i] +
-                    '</div>'+
+                    '<div class="character-health">' +
+                    'Health: ' + this.characters[index].health +
+                    '</div>' +
+                    '<div class="character-attack">' +
+                    'Attack: ' + this.characters[index].attack +
+                    '</div>' +
                 '</div>');
 
-            $('div[name|="' + starWars.characters.name[i] + '"').css('background-image', 'url("' + starWars.characters.background[i] + '")');
+            $('[data-id|="' + index + '"').css('background-image', 'url("' + this.characters[index].background + '")');
         }
     },
 
-    selectChampion : function(selectedCharacter) {
+    setPlayerCharacter : function (characterName) {
+        player = this.characters[characterName];
+        $('[data-id|="' + characterName + '"').addClass('.player-character');
 
-        var character = ('.character-card[name="' + selectedCharacter + '"]');
-        var battleArena = ('#_battleArena');
+        console.log(player);
+    },
 
-        switch(selectedCharacter) {
-            case 'Luke Skywalker':
-                console.log(character);
+    setEnemyCharacter : function (characterName) {
+        enemy = this.characters[characterName];
+        $('[data-id|="' + characterName + '"').addClass('.enemy-character');
 
-                $(battleArena).append( starWars.characters.name[0] );
-
-                if ( firstChampion.length == 0 ) {
-                    firstChampion.push(
-                        starWars.characters.health[0], starWars.characters.attack[0]
-                    );
-                } else {
-                    secondChampion.push(
-                        starWars.characters.health[0], starWars.characters.attack[0]
-                    )
-                }
-
-                console.log(firstChampion);
-                console.log(secondChampion);
-
-                break;
-            case 'Master Yoda':
-                console.log(character);
-
-                $(battleArena).append( starWars.characters.name[1] );
-
-                if ( firstChampion.length == 0) {
-                    firstChampion.push(
-                        starWars.characters.health[1], starWars.characters.attack[1]
-                    );
-                } else {
-                    secondChampion.push(
-                        starWars.characters.health[1], starWars.characters.attack[1]
-                    )
-                }
-
-                console.log(firstChampion);
-                console.log(secondChampion);
-
-                break;
-            case 'Darth Vader':
-                console.log(character);
-
-
-
-                break;
-            case 'Kylo Ren':
-                console.log(character);
-
-
-
-                break;
-        }
+        console.log(enemy);
     }
 };
 
 $(document).ready(function() {
 
-    starWars.setCharacters();
+    starWars.outputCharacters();
 
     $('.character-card').on('click', function() {
 
-        var characterName = $(this).attr('name');
+        var characterName = $(this).attr('data-id');
+        console.log(characterName);
 
-        starWars.selectChampion(characterName);
-
+        if ( player.length === 0 ) {
+            starWars.setPlayerCharacter(characterName);
+        } else if ( enemy.length === 0 ) {
+            starWars.setEnemyCharacter(characterName);
+        }
     });
 
-    $('#_attackButton').on('click', function() {
+    $('#_attackButton').on('click', function () {
 
-        // First champion attacks second champion
-        secondChampion[0] = secondChampion[0] - firstChampion[1];
+        console.log(enemy);
 
-        // Second champion attacks first champion
-        firstChampion[0] = firstChampion[0] - secondChampion[1];
+        enemy.health -= player.attack;
 
-        // Increment first champion attack damage
-        firstChampion[1] = (firstChampion[1] + 10);
+        console.log(enemy);
 
-        console.log(firstChampion);
-        console.log(secondChampion);
+        if ( enemy.health <= 0 ) {
+            console.log('Enemy Dead');
+        }
+
+        player.health -= enemy.attack;
+
+
+
+
 
     });
-
-
 });
-
-
-
