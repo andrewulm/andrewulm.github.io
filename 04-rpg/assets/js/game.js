@@ -4,8 +4,8 @@
 
 // Global Variables
 
-var player = [];
-var enemy = [];
+var player = {};
+var enemy = {};
 
 var starWars = {
     characters: [
@@ -67,6 +67,7 @@ var starWars = {
         player = this.characters[characterName];
         $('[data-id|="' + characterName + '"').addClass('.player-character');
 
+        console.log('inside setPlayerCharacter');
         console.log(player);
     },
 
@@ -74,6 +75,7 @@ var starWars = {
         enemy = this.characters[characterName];
         $('[data-id|="' + characterName + '"').addClass('.enemy-character');
 
+        console.log('inside setEnemyrCharacter');
         console.log(enemy);
     }
 };
@@ -85,9 +87,11 @@ $(document).ready(function() {
     $('.character-card').on('click', function() {
 
         var characterName = $(this).attr('data-id');
-        console.log(characterName);
 
-        if ( player.length === 0 ) {
+        console.log(player);
+        console.log(enemy);
+
+        if ( $) {
             starWars.setPlayerCharacter(characterName);
         } else if ( enemy.length === 0 ) {
             starWars.setEnemyCharacter(characterName);
@@ -95,8 +99,6 @@ $(document).ready(function() {
     });
 
     $('#_attackButton').on('click', function () {
-
-        console.log(enemy);
 
         enemy.health -= player.attack;
 
@@ -108,9 +110,9 @@ $(document).ready(function() {
 
         player.health -= enemy.attack;
 
+        console.log(player);
 
-
-
+        $('.player-character .character-health').html('test');
 
     });
 });
