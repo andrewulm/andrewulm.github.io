@@ -50,8 +50,10 @@ header div h2 {
 .character-card {
     margin: 1%;
     border-radius: 6px;
-    min-height: 400px;
+    min-height: 450px;
     position: relative;
+    background-position: center;
+    background-size: cover;
 }
 
 .character-card:hover {
@@ -93,6 +95,14 @@ header div h2 {
     border-radius: 6px;
     min-height: 100px;
     text-align: center;
+}
+
+.player {
+    box-shadow: 0 0 30px yellow;
+}
+
+.enemy {
+    box-shadow: 0 0 30px red;
 }
 
 

@@ -1,0 +1,28 @@
+{
+  "characters": [
+    {
+      "name": "Luke Skywalker",
+      "health": 100,
+      "attack": 30,
+      "background": "assets/images/char-luke.png"
+    },
+    {
+      "name": "Master Yoda",
+      "health": 180,
+      "attack": 40,
+      "background": "assets/images/char-yoda.png"
+    },
+    {
+      "name": "Darth Vader",
+      "health": 200,
+      "attack": 60,
+      "background": "assets/images/char-vader.png"
+    },
+    {
+      "name": "Kylo Ren",
+      "health": 180,
+      "attack": 80,
+      "background": "assets/images/char-kylo.png"
+    }
+  ]
+}

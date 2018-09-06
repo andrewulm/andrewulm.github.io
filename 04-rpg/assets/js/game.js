@@ -1,118 +1,146 @@
-// Star Wars RPG - Game Logic
-// Author: Andrew Ulm
-// Description:
+var characters = [];
+var player;
+var enemy;
 
-// Global Variables
+$(document).ready( function () {
 
-var player = {};
-var enemy = {};
+    function getCharacters() {
+        $.getJSON('assets/js/characterList.json', function (data) {
+            characters = $(data.characters);
 
-var starWars = {
-    characters: [
-        {
-            name: 'Luke Skywalker',
-            health: 100,
-            attack: 20,
-            background: 'assets/images/char-luke.png',
-            selected: false
-        },
-        {
-            name: 'Master Yoda',
-            health: 180,
-            attack: 40,
-            background: 'assets/images/char-yoda.png',
-            selected: false
-        },
-        {
-            name: 'Darth Vader',
-            health: 200,
-            attack: 60,
-            background: 'assets/images/char-vader.png',
-            selected: false
-        },
-        {
-            name: 'Kylo Ren',
-            health: 180,
-            attack: 80,
-            background: 'assets/images/char-kylo.png',
-            selected: false
-        },
-    ],
+            $.each(data.characters, function (index, value) {
 
-    // Create Character cards based on number of starWars in the list
-    outputCharacters : function() {
+                var $characterName = $('<div>').addClass('character-name')
+                    .html(data.characters[index].name);
 
-        var setCharacters = $('#_characterSelect');
+                var $characterHealth = $('<div>').addClass('character-health')
+                    .html(data.characters[index].health);
 
-        for ( index = 0; index < this.characters.length; index++ ) {
+                var $characterAttack = $('<div>').addClass('character-attack')
+                    .html(data.characters[index].attack);
 
-            $(setCharacters).append(
-                '<div class="col character-card" data-id="' + index + '">' +
-                    '<div class="character-name">' +
-                    this.characters[index].name +
-                    '</div>' +
-                    '<div class="character-health">' +
-                    'Health: ' + this.characters[index].health +
-                    '</div>' +
-                    '<div class="character-attack">' +
-                    'Attack: ' + this.characters[index].attack +
-                    '</div>' +
-                '</div>');
+                var $newCharacter = $('<div>').addClass('character-card col')
+                    .attr('data-id', index)
+                    .append($characterName)
+                    .append($characterHealth)
+                    .append($characterAttack)
+                    .css('background-image', 'url("' + data.characters[index].background + '")')
+                    .on('click', setPlayerCharacter);
 
-            $('[data-id|="' + index + '"').css('background-image', 'url("' + this.characters[index].background + '")');
-        }
-    },
+                $('#_characterSelect').append($newCharacter);
 
-    setPlayerCharacter : function (characterName) {
-        player = this.characters[characterName];
-        $('[data-id|="' + characterName + '"').addClass('.player-character');
-
-        console.log('inside setPlayerCharacter');
-        console.log(player);
-    },
-
-    setEnemyCharacter : function (characterName) {
-        enemy = this.characters[characterName];
-        $('[data-id|="' + characterName + '"').addClass('.enemy-character');
-
-        console.log('inside setEnemyrCharacter');
-        console.log(enemy);
+            });
+        });
     }
-};
 
-$(document).ready(function() {
+    function setPlayerCharacter(event) {
 
-    starWars.outputCharacters();
+        // Create reusable variable based on data-id #
+        var $selected = $(this).attr('data-id');
 
-    $('.character-card').on('click', function() {
+        // Fill the array with character stats
+        player = characters[$selected];
 
-        var characterName = $(this).attr('data-id');
+        // Add the 'player' class to the selected card
+        $(this).appendTo('[data-id|="' + $selected + '"')
+            .addClass('player');
 
-        console.log(player);
-        console.log(enemy);
+        // Remove previous attached event from this element
+        $('#_characterSelect').children()
+            .unbind('click', setPlayerCharacter)
+            .on('click', setEnemyCharacter);
 
-        if ( $) {
-            starWars.setPlayerCharacter(characterName);
-        } else if ( enemy.length === 0 ) {
-            starWars.setEnemyCharacter(characterName);
-        }
-    });
+        var $attackButton = $('<button>').addClass('attack-button')
+            .text('Attack');
+            //.prop('disabled', true);
 
-    $('#_attackButton').on('click', function () {
+        $('#_battleText').prepend('<p>Select character to Battle</p>');
+
+        $('#_attackButton').append($attackButton);
+
+    }
+
+    function setEnemyCharacter() {
+
+        var $selected = $(this).attr('data-id');
+
+        enemy = characters[$selected];
+
+        $(this).appendTo('[data-id|="' + $selected + '"')
+            .addClass('enemy fought');
+
+        $('#_characterSelect').children()
+            .unbind('click', setEnemyCharacter);
+
+        $('#_battleText').html('<p>Press Attack to fight ' + enemy.name + '</p>');
+
+        $('#_attackButton').on('click', attack);
+
+    }
+
+    function attack() {
+
+        player.attack += 25;
 
         enemy.health -= player.attack;
 
-        console.log(enemy);
-
         if ( enemy.health <= 0 ) {
-            console.log('Enemy Dead');
+            postBattle(true);
+            return;
         }
 
         player.health -= enemy.attack;
 
-        console.log(player);
+        // Update player stats on page
+        $('#_characterSelect .player .character-health').html(player.health);
+        $('#_characterSelect .player .character-attack').html(player.attack);
 
-        $('.player-character .character-health').html('test');
+        // Update enemy stats on page
+        $('#_characterSelect .enemy .character-health').html(enemy.health);
 
-    });
+        if ( player.health <= 0 ) {
+            postBattle(false);
+        }
+
+    }
+
+    function postBattle(victory) {
+
+        if ( victory ) {
+            $('#_characterSelect .fought').remove();
+
+            if ( $('#_characterSelect').children().length === 1 ) {
+                endGame(true);
+                return;
+            }
+
+            $('#_battleText').html('<p>You defeated ' + enemy.name + '. Choose another enemy to fight</p>');
+
+            $('#_characterSelect').children()
+                .on('click', setEnemyCharacter);
+
+        }
+
+        else {
+            $('#_characterSelect .player').remove();
+            $('#_battleText').html('<p>You have been defeated by ' + enemy.name + '"');
+            endGame(false);
+        }
+
+    }
+
+    function endGame(win) {
+        if (win) {
+            $('#_battleText').html('<p>You Won!</p>');
+        }
+
+        $('#_attackButton').text('Play Again?')
+            .on('click', function () {
+                location.reload();
+            })
+
+    }
+
+    getCharacters()
+
 });
