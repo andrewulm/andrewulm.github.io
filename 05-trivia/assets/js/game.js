@@ -3,11 +3,15 @@
 
 $(document).ready( function () {
 
+    // const timer = 1000;
+
     var answer = '';
     var count = 0;
     var correct = 0;
     var incorrect = 0;
     var totalQuestions = 0;
+    // var timeLeft = 10;
+    // var gameTimer = setTimeout(setTimer, timer);
 
     function getQuestion() {
 
@@ -25,13 +29,15 @@ $(document).ready( function () {
             $.each(data.list[count].choices, function (index) {
                 $($choices).append(
                     '<li class="option">' + data.list[count].choices[index] + '</li>'
-                )
+                );
             });
 
             var $bundle = $('<div>').html($question)
                 .append($choices);
 
             $('#_questions').append($bundle);
+
+            //setTimeout(setTimer, timer);
 
         });
     }
@@ -67,29 +73,44 @@ $(document).ready( function () {
     function evaluateChoice (text) {
         count++;
 
+        if ( text === answer ) {
+            correct++;
+            getQuestion();
+        } else {
+            incorrect++;
+            getQuestion();
+        }
+
         if ( count === totalQuestions ) {
             endGame();
-        } else {
-            if ( text === answer ) {
-                correct++;
-                getQuestion();
-            } else {
-                incorrect++;
-                getQuestion();
-            }
         }
     }
 
     $(document).on('click', '.option', function () {
-        evaluateChoice(this.innerText)
+        //clearInterval(gameTimer);
+        evaluateChoice(this.innerText);
     });
 
-    startGame();
+    $(document).on('click', '.start-game', startGame);
 
 });
 
-// Timer syntax
-// document.body.style.background = "blue";
-// setTimeout(function () {
-//    document.body.style.background = "yellow";
-// }, 2000);
+// function setTimer () {
+//     timeLeft--;
+//
+//     if ( timeLeft > 0 ) {
+//         gameTimer = setTimeout(setTimer, timer);
+//     } else {
+//
+//         if ( count === totalQuestions ) {
+//             endGame();
+//         } else {
+//             count++;
+//             incorrect++;
+//             timeLeft = 10;
+//             getQuestion();
+//         }
+//     }
+//
+//     $('#_timer').text(timeLeft);
+// }
