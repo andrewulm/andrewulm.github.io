@@ -1,0 +1,11 @@
+body {
+    background: #3949ab;
+}
+
+.container {
+    background: #fff;
+    padding: 40px;
+    margin: 40px auto;
+    border-radius: 10px;
+    text-align: center;
+}

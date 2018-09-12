@@ -5,7 +5,7 @@ var enemy;
 $(document).ready( function () {
 
     function getCharacters() {
-        $.getJSON('assets/js/characterList.json', function (data) {
+        $.getJSON('assets/js/characters.json', function (data) {
             characters = $(data.characters);
 
             $.each(data.characters, function (index, value) {
