@@ -2,6 +2,17 @@ body {
     background: #3949ab;
 }
 
+.background-layer {
+    background: url('http://www.cashadvance6online.com/data/archive/img/974058331.png') repeat center center fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 .container {
     background: #fff;
     padding: 40px;
@@ -12,13 +23,28 @@ body {
 
 .choices {
     list-style: none;
-    width: 50%;
     margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .choices li {
-    margin: 10px;
+    flex-basis: 48%;
+    margin: 1%;
     padding: 10px;
     border-radius: 10px;
     border: 1px #eee solid;
+}
+
+.choices li:hover {
+    background: #00c0a9;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.choices li:active {
+    border: none;
 }
