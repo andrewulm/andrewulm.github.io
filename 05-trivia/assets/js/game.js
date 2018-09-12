@@ -1,14 +1,22 @@
 // Trivia Game
 // Author: Andrew Ulm
 
-var question = [];
-var count = 0;
-
 $(document).ready( function () {
+
+    var answer = '';
+    var count = 0;
+    var correct = 0;
+    var incorrect = 0;
+    var totalQuestions = 0;
 
     function getQuestion() {
 
+        $('#_questions').empty();
+
         $.getJSON('assets/js/questions.json', function (data) {
+
+            answer = data.list[count].answer;
+            totalQuestions = data.list.length;
 
             var $question = $('<h3>').html(data.list[count].question);
 
@@ -29,19 +37,58 @@ $(document).ready( function () {
     }
 
     function startGame () {
+        count = 0;
+        correct = 0;
+        incorrect = 0;
+        totalQuestions = 0;
+
         getQuestion();
     }
 
-    function evaluateChoice () {
-        console.log('ive been clicked!');
+    function endGame () {
+
+        console.log('inside endgame');
+
+        $('#_questions').empty();
+
+        var $totalCorrect = $('<h3>').text(correct);
+        var $totalIncorrect = $('<h3>').text(incorrect);
+        var $resetGame = $('<button>').addClass('play-again')
+            .text('Play Again');
+
+        var $endGameMessage = $('<div>')
+            .append($totalCorrect, $totalIncorrect, $resetGame);
+
+        $('#_questions').append($endGameMessage);
+
+        $('.play-again').on('click', startGame);
     }
+
+    function evaluateChoice (text) {
+        count++;
+
+        if ( count === totalQuestions ) {
+            endGame();
+        } else {
+            if ( text === answer ) {
+                correct++;
+                getQuestion();
+            } else {
+                incorrect++;
+                getQuestion();
+            }
+        }
+    }
+
+    $(document).on('click', '.option', function () {
+        evaluateChoice(this.innerText)
+    });
 
     startGame();
 
-    $('.option').on('click', evaluateChoice);
-
 });
 
+// Timer syntax
 // document.body.style.background = "blue";
 // setTimeout(function () {
 //    document.body.style.background = "yellow";

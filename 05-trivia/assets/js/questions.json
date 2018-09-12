@@ -18,7 +18,7 @@
         "This is choice C",
         "This is choice D"
       ],
-      "answer": "This is the answer"
+      "answer": "This is choice B"
     },
     {
       "question": "Here is question 3",
@@ -28,7 +28,7 @@
         "This is choice C",
         "This is choice D"
       ],
-      "answer": "This is the answer"
+      "answer": "This is choice C"
     }
   ]
 }
