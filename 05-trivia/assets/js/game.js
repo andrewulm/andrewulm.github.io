@@ -10,8 +10,7 @@ $(document).ready( function () {
     var correct = 0;
     var incorrect = 0;
     var totalQuestions = 0;
-    // var timeLeft = 10;
-    // var gameTimer = setTimeout(setTimer, timer);
+    var timeLeft = 10;
 
     function getQuestion() {
 
@@ -37,8 +36,6 @@ $(document).ready( function () {
 
             $('#_questions').append($bundle);
 
-            //setTimeout(setTimer, timer);
-
         });
     }
 
@@ -52,9 +49,6 @@ $(document).ready( function () {
     }
 
     function endGame () {
-
-        console.log('inside endgame');
-
         $('#_questions').empty();
 
         var $totalCorrect = $('<h3>').text(correct);
@@ -83,15 +77,28 @@ $(document).ready( function () {
 
         if ( count === totalQuestions ) {
             endGame();
+            clearInterval(startTimer);
+        }
+    }
+
+    function startTimer () {
+        if (timeLeft === 0) {
+            evaluateChoice();
+            timeLeft = 10;
+        } else {
+            $('#_timer').text(timeLeft);
+            timeLeft--;
         }
     }
 
     $(document).on('click', '.option', function () {
-        //clearInterval(gameTimer);
         evaluateChoice(this.innerText);
     });
 
-    $(document).on('click', '.start-game', startGame);
+    $(document).on('click', '.start-game', function () {
+        startGame();
+        setInterval(startTimer, 500);
+    });
 
 });
 
