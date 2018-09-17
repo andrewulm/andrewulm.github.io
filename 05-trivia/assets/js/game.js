@@ -8,7 +8,7 @@ $(document).ready( function () {
     var incorrect = 0;
     var totalQuestions = 0;
     var timer;
-    var timeLeft = 11;
+    var timeLeft = 16;
     var grade;
 
     function getQuestion() {
@@ -101,11 +101,11 @@ $(document).ready( function () {
                 evaluateChoice();
             } else {
                 timeLeft--;
-                if ( timeLeft >= 6 ) {
+                if ( timeLeft >= 10 ) {
                     $('#_timer').html('<h2>' + timeLeft);
-                } else if ( 5 >= timeLeft && timeLeft >= 3 ) {
+                } else if ( 9 >= timeLeft && timeLeft >= 6 ) {
                     $('#_timer').html('<h2 class="warning">' + timeLeft);
-                } else if ( timeLeft < 3 ) {
+                } else if ( timeLeft <= 5 ) {
                     $('#_timer').html('<h2 class="danger">' + timeLeft);
                 }
             }
@@ -115,7 +115,7 @@ $(document).ready( function () {
     function resetTimer () {
         clearInterval(timer);
         $('#_timer').empty();
-        timeLeft = 11;
+        timeLeft = 16;
     }
 
     function results () {
