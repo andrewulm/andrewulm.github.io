@@ -33,7 +33,10 @@ $(document).ready( function () {
                 .append($choices);
 
             $('#_questions').append($bundle);
+
             count++;
+
+            $('#_counter').html('<h4>' + count + ' of ' + totalQuestions);
         });
 
         clearInterval(timer);
@@ -54,6 +57,7 @@ $(document).ready( function () {
         results();
 
         $('#_questions').empty();
+        $('#_counter').empty();
 
         var $totalCorrect = $('<h3>').text('Correct: ' + correct);
         var $totalIncorrect = $('<h3>').text('Incorrect: ' + incorrect);
