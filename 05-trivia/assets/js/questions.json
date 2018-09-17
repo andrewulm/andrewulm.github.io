@@ -1,34 +1,104 @@
 {
   "list": [
     {
-      "question": "Here is question 1",
+      "question": "What has many holes, but holds lots of water?",
         "choices": [
-          "This is choice A",
-          "This is choice B",
-          "This is choice C",
-          "This is choice D"
+          "An umbrella",
+          "A bucket",
+          "A sponge",
+          "A slice of bread"
         ],
-      "answer": "This is choice A"
+      "answer": "A sponge"
     },
     {
-      "question": "Here is question 2",
+      "question": "What goes up when the rain comes down?",
       "choices": [
-        "This is choice A",
-        "This is choice B",
-        "This is choice C",
-        "This is choice D"
+        "The temperature",
+        "Umbrellas",
+        "Depression",
+        "Car accidents"
       ],
-      "answer": "This is choice B"
+      "answer": "Umbrellas"
     },
     {
-      "question": "Here is question 3",
+      "question": "I'm not clothes, but I cover your body. The more im used, the thinner I grow",
       "choices": [
-        "This is choice A",
-        "This is choice B",
-        "This is choice C",
-        "This is choice D"
+        "Hair",
+        "Skin",
+        "Bar of Soap",
+        "Cologne"
       ],
-      "answer": "This is choice C"
+      "answer": "Bar of Soap"
+    },
+    {
+      "question": "I have a head and a tail, but no body. What am I?",
+      "choices": [
+        "A lizard",
+        "Dollar bills",
+        "I hate riddles",
+        "A Coin"
+      ],
+      "answer": "A Coin"
+    },
+    {
+      "question": "I'm black from a bag, Red when you use me, White when you're done with me. What am I?",
+      "choices": [
+        "Charcoal",
+        "Televisions",
+        "Alcohol",
+        "Clothes"
+      ],
+      "answer": "Charcoal"
+    },
+    {
+      "question": "What is the beginning of end and the end of universe?",
+      "choices": [
+        "The meaning of life",
+        "The letter E",
+        "Time",
+        "Space makes my head hurt"
+      ],
+      "answer": "The letter E"
+    },
+    {
+      "question": "I have keys but no locks, I have a space but no room, You can enter, but can't go outside. What am I?",
+      "choices": [
+        "A Prison",
+        "A Bank",
+        "A Keyboard",
+        "A Zoo"
+      ],
+      "answer": "A Keyboard"
+    },
+    {
+      "question": "They are Dark, and always on the run. Without the sun, there would be none.",
+      "choices": [
+        "Shadows",
+        "Life",
+        "Solar Panels",
+        "Rain Forest"
+      ],
+      "answer": "Shadows"
+    },
+    {
+      "question": "What lives as long as it eats but dies when it drinks?",
+      "choices": [
+        "Humans",
+        "Rivers",
+        "Fire",
+        "The American political process"
+      ],
+      "answer": "Fire"
+    },
+    {
+      "question": "Is this game over?",
+      "choices": [
+        "No",
+        "No",
+        "No",
+        "Yes"
+      ],
+      "answer": "Yes"
     }
   ]
 }

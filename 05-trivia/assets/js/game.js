@@ -2,18 +2,16 @@
 // Author: Andrew Ulm
 
 $(document).ready( function () {
-
-    // const timer = 1000;
-
     var answer = '';
     var count = 0;
     var correct = 0;
     var incorrect = 0;
     var totalQuestions = 0;
-    var timeLeft = 10;
+    var timer;
+    var timeLeft = 11;
+    var grade;
 
     function getQuestion() {
-
         $('#_questions').empty();
 
         $.getJSON('assets/js/questions.json', function (data) {
@@ -35,8 +33,11 @@ $(document).ready( function () {
                 .append($choices);
 
             $('#_questions').append($bundle);
-
+            count++;
         });
+
+        clearInterval(timer);
+        time();
     }
 
     function startGame () {
@@ -49,47 +50,83 @@ $(document).ready( function () {
     }
 
     function endGame () {
+        resetTimer();
+        results();
+
         $('#_questions').empty();
 
-        var $totalCorrect = $('<h3>').text(correct);
-        var $totalIncorrect = $('<h3>').text(incorrect);
-        var $resetGame = $('<button>').addClass('play-again')
+        var $totalCorrect = $('<h3>').text('Correct: ' + correct);
+        var $totalIncorrect = $('<h3>').text('Incorrect: ' + incorrect);
+        var $resetGame = $('<div>').addClass('play-again')
             .text('Play Again');
 
         var $endGameMessage = $('<div>')
+            .prepend('<h3 class="grade">Overall Grade: ' + (grade * 100) + '%')
             .append($totalCorrect, $totalIncorrect, $resetGame);
 
         $('#_questions').append($endGameMessage);
 
-        $('.play-again').on('click', startGame);
+        $('.play-again').on('click', function () {
+            startGame();
+            resetTimer();
+            time();
+        });
     }
 
     function evaluateChoice (text) {
-        count++;
-
         if ( text === answer ) {
+            resetTimer();
             correct++;
             getQuestion();
         } else {
+            resetTimer();
             incorrect++;
             getQuestion();
         }
 
         if ( count === totalQuestions ) {
             endGame();
-            clearInterval(startTimer);
         }
     }
 
-    function startTimer () {
-        if (timeLeft === 0) {
-            evaluateChoice();
-            timeLeft = 10;
-        } else {
-            $('#_timer').text(timeLeft);
-            timeLeft--;
+    function time() {
+        timer = setInterval(countdown, 1000);
+        function countdown() {
+            if (timeLeft === 0) {
+                resetTimer();
+                evaluateChoice();
+            } else {
+                timeLeft--;
+                if ( timeLeft >= 6 ) {
+                    $('#_timer').html('<h2>' + timeLeft);
+                } else if ( 5 >= timeLeft && timeLeft >= 3 ) {
+                    $('#_timer').html('<h2 class="warning">' + timeLeft);
+                } else if ( timeLeft < 3 ) {
+                    $('#_timer').html('<h2 class="danger">' + timeLeft);
+                }
+            }
         }
     }
+
+    function resetTimer () {
+        clearInterval(timer);
+        $('#_timer').empty();
+        timeLeft = 11;
+    }
+
+    function results () {
+        grade = (correct / totalQuestions).toFixed(2);
+        console.log(grade);
+
+        if ( grade >= 0.75 ) {
+            $('#_timer').html('<h2>' + 'Wow, you really know your stuff!');
+        } else if ( 0.74 >= grade && grade >= 0.50 ) {
+            $('#_timer').html('<h2 class="warning">' + 'You did alright. Maybe you should try again.');
+        } else {
+            $('#_timer').html('<h2 class="danger">' + "You're pretty terrible at this Try again.");
+        }
+    }
+
 
     $(document).on('click', '.option', function () {
         evaluateChoice(this.innerText);
@@ -97,27 +134,6 @@ $(document).ready( function () {
 
     $(document).on('click', '.start-game', function () {
         startGame();
-        setInterval(startTimer, 500);
     });
 
 });
-
-// function setTimer () {
-//     timeLeft--;
-//
-//     if ( timeLeft > 0 ) {
-//         gameTimer = setTimeout(setTimer, timer);
-//     } else {
-//
-//         if ( count === totalQuestions ) {
-//             endGame();
-//         } else {
-//             count++;
-//             incorrect++;
-//             timeLeft = 10;
-//             getQuestion();
-//         }
-//     }
-//
-//     $('#_timer').text(timeLeft);
-// }

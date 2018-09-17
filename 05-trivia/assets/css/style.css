@@ -1,5 +1,19 @@
+@font-face {
+    font-family: 'JackBox';
+    src: url("../fonts/jackInTheBox.ttf") format('truetype');
+}
+
 body {
     background: #3949ab;
+}
+
+h1 {
+    padding: 30px;
+    font-family: 'JackBox', sans-serif;
+    font-size: 48px;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .background-layer {
@@ -20,8 +34,28 @@ body {
 }
 
 #_questions {
-    padding: 40px;
+    padding: 10px 40px;
 }
+
+#_timer {
+    padding: 10px;
+    height: 70px;
+}
+
+#_timer h2 {
+    color: #A8EB12;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.warning {
+    color: #E89F0C !important;
+}
+
+.danger {
+    color: #bb2200 !important;
+}
+
 
 .choices {
     list-style: none;
@@ -49,4 +83,19 @@ body {
 
 .choices li:active {
     border: none;
+}
+
+.play-again, .start-game{
+    width: 50%;
+    background: #00c0a9;
+    color: #fff;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.play-again:hover, .start-game:hover {
+    filter: brightness(80%);
+    cursor: pointer;
 }
