@@ -1,0 +1,34 @@
+{
+  "list": [
+    {
+      "Name": "Project 1 - Basic Portfolio",
+      "URL": "01-basic-portfolio/index.html",
+      "Description": "Build a basic portfolio."
+    },
+    {
+      "Name": "Project 2 - Responsiveness",
+      "URL": "02-responsiveness/index.html",
+      "Description": "Modify previous basic portfolio with Bootstrap CSS framework and @media queries"
+    },
+    {
+      "Name": "Project 3 - Hangman",
+      "URL": "03-hangman/index.html",
+      "Description": "Create a Hangman game with ES6 Javascript"
+    },
+    {
+      "Name": "Project 4 - RPG",
+      "URL": "04-rpg/index.html",
+      "Description": "Create a Star Wars RPG game using jQuery"
+    },
+    {
+      "Name": "Project 5 - Trivia Game",
+      "URL": "05-trivia/index.html",
+      "Description": "Create a trivia game with timers using jQuery and Javascript"
+    },
+    {
+      "Name": "Project 6 - Giphy API",
+      "URL": "06-api/index.html",
+      "Description": "In progress"
+    }
+  ]
+}
