@@ -1,10 +1,7 @@
 // Giphy API project
 // Author: Andrew Ulm
 
-//6j4UrTaRkdwbzlI0OrmRK7dIVQc6F5b1
-
 $(document).ready( function () {
-
     const API_KEY = '6j4UrTaRkdwbzlI0OrmRK7dIVQc6F5b1';
 
     let teams = [
@@ -40,24 +37,18 @@ $(document).ready( function () {
         'Baltimore Ravens',
         'Tennessee Titans',
         'Cincinnati Bengals'
-        ];
+    ];
 
-    function getTeams() {
         let _teamButtons = $('#_teamButtons');
-
         $(_teamButtons).empty();
 
         for ( i = 0; i < teams.length; i++ ) {
-            let teamButton = $('<button class="team">' + teams[i] + '</button>').attr('data-id', teams[i]);
+            let teamButton = $('<button>' + teams[i] + '</button>').attr('data-id', teams[i]);
 
             $(_teamButtons).append(teamButton);
         }
-    }
 
-    $('.team').on('click', function () {
-
-        console.log('clicked');
-
+    $('#_teamButtons button').on('click', function () {
         let _gifs = $('#_gifs');
         $(_gifs).empty();
 
@@ -105,10 +96,5 @@ $(document).ready( function () {
         let teamName = $('.add-team').val().trim();
 
         teams.push(teamName);
-
-        getTeams();
     });
-
-    getTeams();
-
 });

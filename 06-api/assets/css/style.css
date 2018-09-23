@@ -18,6 +18,18 @@ button:hover {
     cursor: pointer;
 }
 
+#_teamButtons div {
+    background: #333333;
+    color: #fff;
+    padding: 10px;
+    display: inline-block;
+}
+
+#_teamButtons div:hover {
+    background: #ec9b4e;
+    cursor: pointer;
+}
+
 #_gifs {
     padding: 20px;
     margin: auto;
