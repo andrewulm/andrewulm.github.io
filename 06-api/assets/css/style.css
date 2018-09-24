@@ -1,0 +1,84 @@
+body {
+    background: url('https://st2.depositphotos.com/1943809/5845/i/950/depositphotos_58455733-stock-photo-football-grass-background.jpg');
+    background-size: auto;
+}
+
+button {
+    border-radius: 6px;
+    margin: 10px;
+    background: #333333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background: #ec9b4e;
+    cursor: pointer;
+}
+
+#_teamButtons div {
+    background: #333333;
+    color: #fff;
+    padding: 10px;
+    display: inline-block;
+}
+
+#_teamButtons div:hover {
+    background: #ec9b4e;
+    cursor: pointer;
+}
+
+#_gifs {
+    padding: 20px;
+    margin: auto;
+}
+
+#_gifs div {
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin: 5px;
+    border-radius: 6px;
+}
+
+#_gifs div div h2 {
+    color: #fff;
+    font-size: 36px;
+    text-transform: uppercase;
+}
+
+.gif-background {
+    box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.7);
+}
+
+.add-team {
+    width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 20px 10px;
+    box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.5);
+}
+
+.add-button {
+    width: 100px;
+    height: 44px;
+    padding: 0;
+    border-radius: 10px;
+    border: none;
+    background: #ec9b4e;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.5);
+}
+
+.add-button:hover {
+    background: #2db34a;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 90%;
+}
