@@ -39,6 +39,10 @@ $(document).ready( function () {
         'Cincinnati Bengals'
     ];
 
+    getTeams();
+
+    function getTeams() {
+
         let _teamButtons = $('#_teamButtons');
         $(_teamButtons).empty();
 
@@ -47,8 +51,9 @@ $(document).ready( function () {
 
             $(_teamButtons).append(teamButton);
         }
+    }
 
-    $('#_teamButtons button').on('click', function () {
+    $(document).on('click', '#_teamButtons button', function () {
         let _gifs = $('#_gifs');
         $(_gifs).empty();
 
@@ -96,5 +101,9 @@ $(document).ready( function () {
         let teamName = $('.add-team').val().trim();
 
         teams.push(teamName);
+
+        $('.add-team').val('');
+
+        getTeams();
     });
 });
