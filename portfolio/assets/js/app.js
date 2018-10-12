@@ -10,11 +10,33 @@ $(document).ready(function () {
         }
     });
 
-
-    $('#name').on('click', function () {
-        $('html, body').animate({
-            scrollTop: $('#nav').offset().top
-        }, 500)
+    $('.scroll').on('click', function () {
+        switch ( $(this).attr('data-value') ){
+            case 'name':
+                scrollTo('#nav');
+                break;
+            case 'home':
+                scrollTo('#splash');
+                break;
+            case 'about':
+                scrollTo('#about');
+                break;
+            case 'projects':
+                scrollTo('#projects');
+                break;
+            case 'skills':
+                scrollTo('#skills');
+                break;
+            case 'contact':
+                scrollTo('#contact');
+                break;
+        }
     });
+
+    function scrollTo(section) {
+        $('html, body').animate({
+            scrollTop: $(section).offset().top - $('#nav').height()
+        }, 500)
+    }
 
 });

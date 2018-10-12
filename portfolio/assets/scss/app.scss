@@ -83,14 +83,48 @@ body {
 }
 
 #nav {
-  //background: linear-gradient(0.45turn, #22c1c3,#b2ff59, #ffb300);
   background: #263238;
   height: 10vh;
   box-shadow: 0 -25px 100px 1px rgba(0, 0, 0, .75);
   border-bottom: 4px #8bc249 solid;
 
-  img {
-    height: 10vh;
+  ul {
+    display: flex;
+    align-items: center;
+
+    li {
+      margin-left: auto;
+
+      img {
+        height: 10vh;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      a {
+        color: #f8f8f8;
+
+        &:hover{
+          text-decoration: none;
+          transition: border-bottom-color 1s;
+          border-bottom: 3px #0dbcd4 solid;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+        flex: 8;
+      }
+
+      &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5) {
+        flex: 1;
+        font-family: 'Museo700', serif;
+        text-align: center;
+        font-size: 1.25em;
+      }
+    }
   }
 }
 
@@ -107,14 +141,20 @@ body {
   color: #263238;
 }
 
-#portfolio {
+#projects {
   background: #eee;
   height: 100vh;
   color: #263238;
 }
 
+#skills {
+  background: #f8f8f8;
+  height: 100vh;
+  color: #263238;
+}
+
 #contact {
-  background: #fff;
+  background: #eee;
   height: 100vh;
   color: #263238;
 }
