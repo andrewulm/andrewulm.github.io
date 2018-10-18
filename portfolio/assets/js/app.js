@@ -11,24 +11,32 @@ $(document).ready(function () {
     });
 
     $('.scroll').on('click', function () {
+        $('.scroll').find('span').removeClass('selected');
+
         switch ( $(this).attr('data-value') ){
             case 'name':
-                scrollTo('#nav');
+                $('html, body').animate({
+                    scrollTop: $('#nav').offset().top
+                }, 500);
                 break;
             case 'home':
                 scrollTo('#splash');
                 break;
             case 'about':
                 scrollTo('#about');
+                $(this).find('span').addClass('selected');
                 break;
             case 'projects':
                 scrollTo('#projects');
+                $(this).find('span').addClass('selected');
                 break;
             case 'skills':
                 scrollTo('#skills');
+                $(this).find('span').addClass('selected');
                 break;
             case 'contact':
                 scrollTo('#contact');
+                $(this).find('span').addClass('selected');
                 break;
         }
     });

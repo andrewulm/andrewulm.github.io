@@ -45,6 +45,12 @@ body {
       justify-content: center;
       margin: 1%;
 
+      @media only screen and (max-width: 768px) {
+        display: block;
+        text-align: center;
+
+      }
+
       h1 {
         padding: 20px 30px;
         color: #263238;
@@ -103,16 +109,6 @@ body {
         }
       }
 
-      a {
-        color: #f8f8f8;
-
-        &:hover{
-          text-decoration: none;
-          transition: border-bottom-color 1s;
-          border-bottom: 3px #0dbcd4 solid;
-        }
-      }
-
       &:first-child {
         margin-left: 0;
         flex: 8;
@@ -123,8 +119,24 @@ body {
         font-family: 'Museo700', serif;
         text-align: center;
         font-size: 1.25em;
+        color: #f8f8f8;
+
+        span {
+          &:hover{
+            text-decoration: none;
+            transition: border-bottom-color 1s;
+            border-bottom: 3px #8bc249 solid;
+            cursor: pointer;
+          }
+        }
       }
     }
+  }
+
+  .selected {
+    transition: color 1s;
+    border-bottom: 3px #fff solid;
+    color: #0dbcd4;
   }
 }
 
@@ -135,37 +147,53 @@ body {
   width: 100%;
 }
 
-#about {
-  background: #f8f8f8;
-  height: 100vh;
-  color: #263238;
+main {
+  section {
+    min-height: 100vh;
+    color: #263238;
+    padding: 100px 40px 40px 40px;
+
+    h2 {
+      font-family: 'Museo700', serif;
+      font-size: 2.5em;
+    }
+  }
+
+  #about {
+    background: #f8f8f8;
+  }
+
+  #projects {
+    background: #eee;
+
+    .container {
+
+      .project-cards {
+        display: flex;
+
+        .project-card {
+
+        }
+      }
+    }
+  }
+
+  #skills {
+    background: #f8f8f8;
+  }
+
+  #contact {
+    background: #eee;
+  }
 }
 
-#projects {
-  background: #eee;
-  height: 100vh;
-  color: #263238;
-}
-
-#skills {
-  background: #f8f8f8;
-  height: 100vh;
-  color: #263238;
-}
-
-#contact {
-  background: #eee;
-  height: 100vh;
-  color: #263238;
-}
-
-#footer {
+footer {
   background: #263238;
   height: 20vh;
   color: #fff;
 }
 
-//////////
+// Scrollbar CSS //
 
 body::-webkit-scrollbar-track{
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
