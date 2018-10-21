@@ -8,6 +8,7 @@ const Spotify = require('node-spotify-api');
 const keys = require("./keys.js");
 const moment = require('moment');
 const request = require('request');
+const fs = require('fs');
 
 const spotify = new Spotify(keys.spotify);
 
@@ -15,17 +16,20 @@ const spotify = new Spotify(keys.spotify);
 process.argv.splice(0, 2);
 
 const task = process.argv.shift();
-const term = process.argv.join(' ');
+let term = process.argv.join(' ');
 let queryURL;
 let momentFrom;
 let momentTo;
 let momentDate;
+let songData;
+let movieData;
+let fileArgs;
 
 console.log(`You want to run: ${task} with: ${term}`);
 
 // Define LiriBot with functions
 const liri = {
-    runConcert: function(term) {
+    runConcert: (term) => {
         // Build date for query parameter
         momentFrom = moment();
         momentTo = momentFrom.clone().add(30, 'days');
@@ -54,32 +58,84 @@ const liri = {
             });
         })
     },
-    runSpotify: function(term) {
-        console.log(term);
+
+    runSpotify: (term) => {
+        spotify.search({ type: 'track', query: `${term}`, limit: 5 }, function(err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+
+            songData = data.tracks.items;
+
+            songData.forEach((item) => {
+                console.log(`
+                    Artist: ${item.album.artists[0].name}
+                    Title: ${item.name}
+                    Album: ${item.album.name}
+                    Preview: ${item.artists[0].external_urls.spotify}
+                `);
+            });
+        });
     },
-    runMovie: function(term) {
-        console.log(term);
+
+    runMovie: (term) => {
+
+        queryURL = `http://www.omdbapi.com/?apikey=d1effae1&t=${term}`;
+        console.log(queryURL);
+
+        request(queryURL, (err, res, body) => {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+
+            movieData = JSON.parse(body);
+
+            console.log(`
+                Title: ${movieData.Title}
+                Year: ${movieData.Year}
+                IMDB Rating: ${movieData.Ratings[0].Value}
+                RT Rating: ${movieData.Ratings[1].Value}
+                Country: ${movieData.Country}
+                Language: ${movieData.Language}
+                Actors: ${movieData.Actors}
+                Plot: ${movieData.Plot}
+            `)
+        })
+        // http://www.omdbapi.com/?apikey=d1effae1&
     },
-    runDo: function(term) {
-        console.log(term);
+
+    runDo: () => {
+        fs.readFile('random.txt', 'utf-8', (err, data) => {
+            if(err){
+                console.log(err);
+                throw err;
+            }
+            fileArgs = data.trim().split(',');
+            runLiri(fileArgs[0], fileArgs[1]);
+        });
     }
 };
 
-switch (task) {
-    case 'concert-this':
-        liri.runConcert(term);
-        break;
-    case 'spotify-this-song':
-        liri.runSpotify(term);
-        break;
-    case 'movie-this':
-        liri.runMovie(term);
-        break;
-    case 'do-what-it-says':
-        liri.runDo(term);
-        break;
-    default:
-        console.log(`
+function runLiri(task, term) {
+    switch (task) {
+        case 'concert-this':
+            liri.runConcert(term);
+            break;
+        case 'spotify-this-song':
+            if ( term === '' ) {
+                term = "The Sign";
+            }
+            liri.runSpotify(term);
+            break;
+        case 'movie-this':
+            liri.runMovie(term);
+            break;
+        case 'do-what-it-says':
+            liri.runDo();
+            break;
+        default:
+            console.log(`
             Oops! I don't recognize that command. Try again.\n
             Commands:
                 'concert-this'
@@ -87,5 +143,7 @@ switch (task) {
                 'movie-this'
                 'do-what-it-says'
         `);
+    }
 }
 
+runLiri(task, term);
