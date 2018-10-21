@@ -12,11 +12,13 @@ node liri [task to run] [term to search]
 * do-what-it-says
 
 ###### Example:
+
 **concert-this**
 
 ```
 node liri concert-this Foo Fighters
 ```
+
 *Results:*
 
 ![concert-this command](./screenshots/screenshot_concert-this.png)
@@ -29,6 +31,7 @@ node liri concert-this Foo Fighters
 ```
 node liri concert-this My Hero
 ```
+
 *Results:*
 ![spotify-this-song](screenshots/screenshot_spotify-this.png)
 
@@ -40,6 +43,7 @@ node liri concert-this My Hero
 ```
 node liri movie-this Tenacious D
 ```
+
 *Results:*
 ![spotify-this-song](screenshots/screenshot_movie-this.png)
 
