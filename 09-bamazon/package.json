@@ -1,0 +1,16 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Amazon like CLI app using Node.js and mySQL",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrew Ulm",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "inquirer": "^6.2.0",
+    "mysql": "^2.16.0"
+  }
+}
