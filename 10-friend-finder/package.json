@@ -1,0 +1,15 @@
+{
+  "name": "10-friend-finder",
+  "version": "1.0.0",
+  "description": "Friend finder app for KU Coding Bootcamp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Andrew Ulm",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
