@@ -64,8 +64,8 @@ function userPrompt() {
                } else {
                    console.log('We dont have enough of that product in stock!');
                }
+                console.log('Item Purchased');
+                getProducts();
             });
-        console.log('Item Purchased');
-        getProducts()
     });
 }

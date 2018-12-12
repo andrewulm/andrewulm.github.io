@@ -64,9 +64,7 @@ const liri = {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
-
             songData = data.tracks.items;
-
             songData.forEach((item) => {
                 console.log(`
                     Artist: ${item.album.artists[0].name}
@@ -79,7 +77,6 @@ const liri = {
     },
 
     runMovie: (term) => {
-
         queryURL = `http://www.omdbapi.com/?apikey=d1effae1&t=${term}`;
         console.log(queryURL);
 
@@ -102,7 +99,6 @@ const liri = {
                 Plot: ${movieData.Plot}
             `)
         })
-        // http://www.omdbapi.com/?apikey=d1effae1&
     },
 
     runDo: () => {
