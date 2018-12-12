@@ -1,0 +1,93 @@
+html {
+  background: #FF512F;
+  background: linear-gradient(to top right, #DD2476, #FF512F) no-repeat;
+  min-height: 100vh;
+}
+
+body {
+  background: repeating-linear-gradient(
+                  45deg,
+                  #ffffff0D,
+                  #0000000D 20px,
+                  #0000000D 20px,
+                  #ffffff0D 20px
+  );
+  min-height: 100vh;
+  padding-top: 40px;
+
+  .burger-col {
+    h3 {
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, .25);
+        transition: transform 0.5s;
+
+        &:hover {
+          box-shadow: 0 0 10px #000;
+          transform: scale(1.025)
+        }
+      }
+
+      h5 {
+        color: #fff;
+      }
+
+      button {
+        border-radius: 6px;
+        border: none;
+        padding: 10px 15px;
+        background: rgba(0, 0, 0, .25);
+        color: #fff;
+
+        &:hover {
+          background: lighten(rgba(0, 0, 0, .75), 30);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .form-col {
+
+    .card {
+      background: rgba(0, 0, 0, .25);
+      color: #fff;
+
+      button {
+        border-radius: 6px;
+        border: none;
+        padding: 10px 15px;
+        background: rgb(0, 174, 239);
+        color: #fff;
+
+        &:hover {
+          background: darken(rgb(0, 174, 239), 5);
+          cursor: pointer;
+        }
+      }
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    input[type=text] {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px rgba(0, 0, 0, .25) solid;
+      padding: 10px;
+      background: rgba(0, 0, 0, .25);
+      color: #fff;
+    }
+  }
+}

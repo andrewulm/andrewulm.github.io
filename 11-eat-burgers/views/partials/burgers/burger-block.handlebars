@@ -1,0 +1,17 @@
+<li>
+    <h5>{{name}}</h5>
+
+    {{#if eaten}}
+        <button class="change-burger" data-id="{{id}}" data-neweaten="{{eaten}}">
+            <i class="fas fa-utensils"></i> Order
+        </button>
+        {{else}}
+        <button class="change-burger" data-id="{{id}}" data-neweaten="{{eaten}}">
+            <i class="fas fa-cookie-bite"></i> Eat!
+        </button>
+    {{/if}}
+
+    <button class="delete-burger" data-id="{{this.id}}">
+        <i class="fas fa-trash-alt"></i> Remove
+    </button>
+</li>

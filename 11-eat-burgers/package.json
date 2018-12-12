@@ -1,0 +1,16 @@
+{
+  "name": "11-eat-burgers",
+  "version": "1.0.0",
+  "description": "Simple App to add and remove burgers from a SQL DB",
+  "main": "server.js",
+  "author": "Andrew Ulm",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "handlebars-helper-css": "^0.1.0"
+  }
+}
